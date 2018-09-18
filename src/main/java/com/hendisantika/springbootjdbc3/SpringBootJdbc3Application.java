@@ -24,25 +24,27 @@ public class SpringBootJdbc3Application {
 
     @Bean
     public CommandLineRunner init() {
-        // add windows server
-        SystemExample systemExampleWindows = new SystemExample();
-        systemExampleWindows.setName("Windows Server 2012 R2");
-        systemExampleWindows.setLastaudit("2017-08-11");
-        systemRepository.save(systemExampleWindows);
-        // add rhel
-        SystemExample systemExampleRhel = new SystemExample();
-        systemExampleRhel.setName("RHEL 7");
-        systemExampleRhel.setLastaudit("2017-07-21");
-        systemRepository.save(systemExampleRhel);
-        // add solaris
-        SystemExample systemExampleSolaris = new SystemExample();
-        systemExampleSolaris.setName("Solaris 11");
-        systemExampleSolaris.setLastaudit("2017-08-13");
-        systemRepository.save(systemExampleSolaris);
-        Iterable<SystemExample> systemlist = systemRepository.findAll();
-        System.out.println("here are system count: " + systemlist.toString());
-        for (SystemExample systemExample : systemlist) {
-            System.out.println("Here is a system: " + systemExample.toString());
-        }
+        return args -> {
+            // add windows server
+            SystemExample systemExampleWindows = new SystemExample();
+            systemExampleWindows.setName("Windows Server 2012 R2");
+            systemExampleWindows.setLastaudit("2017-08-11");
+            systemRepository.save(systemExampleWindows);
+            // add rhel
+            SystemExample systemExampleRhel = new SystemExample();
+            systemExampleRhel.setName("RHEL 7");
+            systemExampleRhel.setLastaudit("2017-07-21");
+            systemRepository.save(systemExampleRhel);
+            // add solaris
+            SystemExample systemExampleSolaris = new SystemExample();
+            systemExampleSolaris.setName("Solaris 11");
+            systemExampleSolaris.setLastaudit("2017-08-13");
+            systemRepository.save(systemExampleSolaris);
+            Iterable<SystemExample> systemlist = systemRepository.findAll();
+            System.out.println("here are system count: " + systemlist.toString());
+            for (SystemExample systemExample : systemlist) {
+                System.out.println("Here is a system: " + systemExample.toString());
+            }
+        };
     }
 }
